@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: storage-service
+
+server:
+  port: 0
+  error:
+    include-stacktrace: never
+    include-message: always
+
+eureka:
+  client:
+    service-url:
+      default-zone: ${EUREKA_URI}
+    fetch-registry: true
+    register-with-eureka: true
+
+integration:
+  s3:
+    region: ${S3_REGION}
+    access-key: ${S3_ACCESS_KEY}
+    secret-key: ${S3_SECRET_KEY}
+    keys-bucket-name: ${S3_BUCKET_NAME}

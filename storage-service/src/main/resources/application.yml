@@ -20,7 +20,7 @@ integration:
     region: ${S3_REGION}
     access-key: ${S3_ACCESS_KEY}
     secret-key: ${S3_SECRET_KEY}
-    keys-bucket-name: ${S3_BUCKET_NAME}
+    keys-bucket-name: ${S3_KEYS_BUCKET_NAME}
 
 security:
   rsa:

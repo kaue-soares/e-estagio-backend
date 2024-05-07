@@ -1,6 +1,6 @@
 spring:
   application:
-    name: storage-service
+    name: ${STORAGE_SERVICE_NAME}
 
 server:
   port: 0

@@ -1,6 +1,5 @@
 package kauesoares.eestagio.storageservice.controller;
 
-import kauesoares.eestagio.storageservice.dto.res.PrivateKeyResDTO;
 import kauesoares.eestagio.storageservice.dto.res.KeyResDTO;
 import kauesoares.eestagio.storageservice.service.KeysService;
 import lombok.RequiredArgsConstructor;

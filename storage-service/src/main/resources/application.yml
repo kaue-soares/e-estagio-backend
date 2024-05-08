@@ -2,6 +2,10 @@ spring:
   application:
     name: ${STORAGE_SERVICE_NAME}
 
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+
 server:
   port: ${STORAGE_SERVICE_PORT}
   error:

@@ -3,7 +3,7 @@ spring:
     name: ${STORAGE_SERVICE_NAME}
 
 server:
-  port: 0
+  port: ${STORAGE_SERVICE_PORT}
   error:
     include-stacktrace: never
     include-message: always

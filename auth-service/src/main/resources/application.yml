@@ -18,7 +18,7 @@ spring:
     encoding: UTF-8
 
 server:
-  port: 0
+  port: ${AUTH_SERVICE_PORT}
   error:
     include-stacktrace: never
     include-message: always

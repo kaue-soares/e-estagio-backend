@@ -22,6 +22,8 @@ public class Route extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @Column(name = "private")
     private Boolean isPrivate;
 
@@ -34,13 +36,13 @@ public class Route extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @JoinTable(name = "routes_roles", joinColumns = @JoinColumn(name = "route_id"))
     @Column(name = "role_id")
-    private Set<Role> requiredRoles = new HashSet<>();
+    private Set<Role> allowedRoles = new HashSet<>();
 
     @OneToMany(
             mappedBy = "route",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.EAGER)
-    Set<RouteParam> params;
+    Set<RouteParam> params = new HashSet<>();
 
 }

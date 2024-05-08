@@ -52,8 +52,13 @@ public class SecurityConfig {
                         "/auth/refresh",
                         "/auth/register",
                         "/auth/validate",
-                        "/auth/logout")
-                .permitAll()
+                        "/auth/logout"
+                ).permitAll()
+
+                .requestMatchers(
+                        HttpMethod.POST,
+                        "/routes/private"
+                ).permitAll()
 
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
 

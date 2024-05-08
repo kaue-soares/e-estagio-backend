@@ -1,6 +1,7 @@
 package kauesoares.eestagio.authservice.service;
 
 import kauesoares.eestagio.authservice.config.security.AuthUser;
+import kauesoares.eestagio.authservice.domain.Role;
 import kauesoares.eestagio.authservice.dto.req.UserReqDTO;
 import kauesoares.eestagio.authservice.dto.res.AuthResponseDTO;
 import kauesoares.eestagio.authservice.dto.res.UserResDTO;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -88,6 +90,7 @@ public class AuthService {
 
         user.setEmail(userReqDTO.email());
         user.setPassword(this.passwordEncoder.encode(userReqDTO.password()));
+        user.setRoles(Set.of(Role.USER));
 
         return UserResDTO.fromModel(this.save(user));
 

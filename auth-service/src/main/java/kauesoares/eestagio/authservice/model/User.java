@@ -27,7 +27,7 @@ public class User extends BaseEntity {
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER, targetClass = Role.class)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role_id")
     private Set<Role> roles = new HashSet<>();

@@ -1,4 +1,4 @@
-package kauesoares.eestagio.authservice.config;
+package kauesoares.eestagio.authservice.config.security;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -46,8 +46,17 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults());
 
         http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers(HttpMethod.POST, "/auth/login", "/auth/refresh", "/auth/signup", "/auth/validate").permitAll()
+                .requestMatchers(
+                        HttpMethod.POST,
+                        "/auth/login",
+                        "/auth/refresh",
+                        "/auth/signup",
+                        "/auth/validate",
+                        "/auth/logout")
+                .permitAll()
+
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
+
                 .anyRequest().denyAll()
         );
 

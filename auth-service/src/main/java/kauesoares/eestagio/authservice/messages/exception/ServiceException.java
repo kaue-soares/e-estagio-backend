@@ -3,7 +3,7 @@ package kauesoares.eestagio.authservice.messages.exception;
 import kauesoares.eestagio.authservice.messages.Messages;
 import kauesoares.eestagio.authservice.messages.MessageFactory;
 
-public abstract class ServiceException extends RuntimeException {
+public class ServiceException extends RuntimeException {
 
     public ServiceException(String message) {
         super(message);

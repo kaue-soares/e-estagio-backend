@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,9 +28,11 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<AuthResponseDTO> refresh() {
+    public ResponseEntity<AuthResponseDTO> refresh(
+            @RequestHeader("Authorization") String authorization
+    ) {
         return ResponseEntity.ok(
-                this.authService.refresh());
+                this.authService.refresh(authorization));
     }
 
     @PostMapping("/logout")

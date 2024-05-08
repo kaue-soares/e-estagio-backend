@@ -35,13 +35,15 @@ public class AuthService {
         return this.jwtService.generateAuthData(authUser);
     }
 
-    public AuthResponseDTO refresh() {
-        User user = this.userRepository.findByEmail(AuthUtil.getUserName())
-                .orElseThrow(() -> new UnauthorizedException(Messages.USER_NOT_FOUND));
+    public AuthResponseDTO refresh(String authorization) {
 
-        Jwt jwt = AuthUtil.getJwt();
+        Jwt jwt = this.jwtService.decode(authorization);
 
+        String username = this.jwtService.extractUsername(jwt);
         String refreshCode = this.jwtService.extractRefreshCode(jwt);
+
+        User user = this.userRepository.findByEmail(username)
+                .orElseThrow(() -> new UnauthorizedException(Messages.USER_NOT_FOUND));
 
         if (refreshCode == null)
             throw new UnauthorizedException(Messages.NOT_A_REFRESH_TOKEN);

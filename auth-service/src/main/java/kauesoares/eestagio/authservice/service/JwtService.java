@@ -3,12 +3,11 @@ package kauesoares.eestagio.authservice.service;
 import kauesoares.eestagio.authservice.config.properties.JwtProperties;
 import kauesoares.eestagio.authservice.config.security.AuthUser;
 import kauesoares.eestagio.authservice.dto.res.AuthResponseDTO;
+import kauesoares.eestagio.authservice.messages.Messages;
+import kauesoares.eestagio.authservice.messages.exception.UnauthorizedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -21,6 +20,7 @@ public class JwtService {
 
     private final JwtProperties jwtProperties;
     private final JwtEncoder jwtEncoder;
+    private final JwtDecoder jwtDecoder;
 
     private static final String REFRESH_TOKEN_CLAIM = "refreshCode";
 
@@ -64,6 +64,19 @@ public class JwtService {
 
     public String extractRefreshCode(Jwt jwt) {
         return jwt.getClaim(REFRESH_TOKEN_CLAIM);
+    }
+
+    public String extractUsername(Jwt jwt) {
+        return jwt.getSubject();
+    }
+
+    public Jwt decode(String token) {
+        try {
+            String withoutBearer = token.replace("Bearer ", "");
+            return jwtDecoder.decode(withoutBearer);
+        } catch (Exception e) {
+            throw new UnauthorizedException(Messages.INVALID_TOKEN);
+        }
     }
 
 }

@@ -33,3 +33,14 @@ eureka:
 services:
   storage:
     name: ${STORAGE_SERVICE_NAME}
+
+security:
+  auth:
+    seed:
+      admin-email: ${ADMIN_EMAIL}
+      admin-password: ${ADMIN_PASSWORD}
+      user-email: ${USER_EMAIL}
+      user-password: ${USER_PASSWORD}
+
+    jwt:
+      issuer: ${JWT_ISSUER}

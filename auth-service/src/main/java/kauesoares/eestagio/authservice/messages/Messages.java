@@ -7,5 +7,6 @@ public enum Messages {
     INVALID_REFRESH_CODE,
     EXPIRED_REFRESH_TOKEN,
     INVALID_TOKEN,
+    EMAIL_ALREADY_EXISTS,
 
 }
